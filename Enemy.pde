@@ -15,13 +15,16 @@ class Enemy {
 
   void move() {
     //if Pac is within a certain distance of enemy
+    float xDist = abs(woman.circleX-squareX), 
+    yDist = abs(woman.circleY-squareY);
+    int minDist = 4;
 
-    if (((woman.circleX-squareX)*(woman.circleX-squareX))<4||(woman.circleY-squareY)*(woman.circleY-squareY)<4) {
+    if (xDist < minDist || yDist < minDist) {
 
       //make the enemy move towards Pac
-      if ((woman.circleX-squareX)*(woman.circleX-squareX)>(woman.circleY-squareY)*(woman.circleY-squareY)) 
+      if (xDist > yDist) 
       {
-        if ((woman.circleX)>(squareX)) {
+        if (woman.circleX > squareX) {
           squareX++;
         } 
         else {
@@ -29,7 +32,7 @@ class Enemy {
         }
       } 
       else {
-        if ((woman.circleY)>(squareY)) {
+        if (woman.circleY > squareY) {
           squareY++;
         } 
         else {
@@ -39,7 +42,7 @@ class Enemy {
     } 
 
     /*void patrolling() {
-    }*/
+     }*/
   }
 }
 

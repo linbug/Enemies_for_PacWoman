@@ -13,36 +13,46 @@ class Enemy {
     rect (squareX, squareY, squareWidth, squareWidth);
   }
 
-  void move() {
+  float distance(float a, float b) {
+    return abs(a - b);
+  }
+
+  boolean isWithinMoveDistance(float x, float y, float min) {
+    return (x < min) && (y < min);
+  }
+
+  void moveIfRequired() {
     //if Pac is within a certain distance of enemy
-    float xDist = abs(woman.circleX-squareX), 
-    yDist = abs(woman.circleY-squareY);
-    int minDist = 4;
+    float xDist = distance(woman.circleX, squareX);
+    float yDist = distance(woman.circleY, squareY);
+    int minDist = 40;
 
-    if (xDist < minDist || yDist < minDist) {
+    if (isWithinMoveDistance(xDist, yDist, minDist)) {
+      move(xDist, yDist);
+    }
+  } 
 
-      //make the enemy move towards Pac
-      if (xDist > yDist) 
-      {
-        if (woman.circleX > squareX) {
-          squareX++;
-        } 
-        else {
-          squareX--;
-        }
+  void move(float xDist, float yDist) {
+    //make the enemy move towards Pac
+    if (xDist > yDist) 
+    {
+//      squareX += (woman.circleX > squareX) ? 1 : -1;
+      if (woman.circleX > squareX) {
+        squareX++;
       } 
       else {
-        if (woman.circleY > squareY) {
-          squareY++;
-        } 
-        else {
-          squareY--;
-        }
+        squareX--;
       }
     } 
-
-    /*void patrolling() {
-     }*/
+    else {
+//      squareY += (woman.circleY > squareY) ? 1 : -1;
+      if (woman.circleY > squareY) {
+        squareY++;
+      } 
+      else {
+        squareY--;
+      }
+    }
   }
 }
 

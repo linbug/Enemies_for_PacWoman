@@ -33,7 +33,7 @@ void draw() {
   for (int i=0; i<enemies.size(); i++) {
     Enemy myEnemy = (Enemy)enemies.get(i);
     myEnemy.display();
-    myEnemy.move();
+    myEnemy.moveIfRequired();
   }
    woman.display();
   woman.move();
